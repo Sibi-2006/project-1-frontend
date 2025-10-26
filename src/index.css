@@ -1,13 +1,241 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html {
+  scroll-padding-top: 6rem; 
+  scroll-padding-bottom: 6rem; 
+  background-color: rgb(233, 244, 255);
+}
+/* Firefox */
+* {
+  scrollbar-width: thin;           /* makes all scrollbars thinner */
+  scrollbar-color: #60a5fa #1e293b; /* thumb color | track color */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 8px;                       /* width of scrollbar */
 }
+
+*::-webkit-scrollbar-track {
+  background: #1e293b;              /* track color */
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #60a5fa;        /* thumb color */
+  border-radius: 10px;
+  border: 2px solid #1e293b;        /* optional spacing around thumb */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #3b82f6;        /* hover color */
+}
+
+.inputs {
+    @apply outline-none pl-2 border-2 border-black rounded-lg placeholder-black w-3/4 h-10 text-blue-900 focus:ring-2 focus:ring-blue-600 focus:border-none;
+}
+
+.parent {
+  @apply flex justify-center flex-col items-center border-2 border-black mx-auto h-screen w-full md:w-3/4 md:fixed md:right-0 ;
+  overflow-y: auto; 
+}
+
+.home-parent {
+  @apply flex flex-col justify-start items-center mx-auto h-screen  w-full md:w-3/4 pt-10 md:pt-24 pb-24 mt-12 md:mt-24;
+  overflow-y: visible;
+}
+
+.child {
+    @apply flex flex-col justify-center items-center gap-4 border-2 border-black rounded-lg py-5 bg-blue-300 md:w-2/4 w-11/12 shadow-lg shadow-black/40;
+}
+
+.title-form {
+    @apply text-lg font-bold text-blue-950;
+    text-shadow: 2px 3px 10px #000;
+}
+.post-contant{ @apply outline-none p-2 border-2 border-black rounded-lg placeholder-black w-3/4 h-20 text-blue-900 focus:ring-2 focus:ring-blue-600 focus:border-none }
+
+.form-btn {
+    @apply py-3 px-6 bg-blue-800 text-white text-lg rounded-lg hover:bg-white hover:text-blue-950 transition;
+}
+
+.nav-btn {
+    @apply bg-blue-950 text-white border-2 border-white rounded-lg m-5 w-10/12 h-20 text-center flex justify-center items-center;
+}
+
+.error-message {
+    @apply text-red-400 text-left p-0 -m-2;
+}
+
+.links {
+    @apply text-white hover:underline;
+}
+
+.post-content {
+    @apply outline-none p-2 border-2 border-black rounded-lg placeholder-black w-3/4 h-20 text-blue-900 focus:ring-2 focus:ring-blue-600 focus:border-none;
+}
+/* in index.css or a global CSS */
+.post-card {
+  user-select: none;  /* prevents text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+@keyframes popHeart {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+.animate-pop-heart {
+  animation: popHeart 0.7s ease-in-out;
+  pointer-events: none;
+}
+
+.post-card {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+.icons {
+    @apply border-2 rounded-full p-1 border-black ml-2;
+}
+
+.search-bar {
+    @apply fixed top-20 w-11/12 md:w-2/4 outline-none pl-2 border-2 border-black rounded-lg placeholder-black h-10 text-blue-900 focus:ring-2 focus:ring-blue-600 focus:border-none;
+}
+
+.profile-btn{
+    @apply bg-blue-950 text-blue-300 px-7 py-2 rounded-full hover:bg-pink-400 hover:text-blue-100
+}
+
+.profile {
+    @apply flex flex-col justify-center items-center gap-4 border-2 rounded-lg py-5  md:w-2/4 w-11/12 ;
+    background-image: url('./assets/flowers.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid rgb(3, 3, 255);
+    box-shadow: 3px 3px 10px rgb(0, 217, 255);
+}
+
+.post-card{
+    @apply flex flex-col px-4  rounded-lg py-5  md:w-2/4 w-11/12  my-5;
+    @apply transition-transform duration-300 ease-in-out  ;
+    background-image: url('./assets/cat.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid rgb(3, 3, 255);
+    box-shadow: 3px 3px 10px rgb(0, 217, 255);
+}
+
+.post-title{
+    @apply text-xl md:text-2xl font-bold font-mono text-blue-100 ;
+    text-shadow: 1px 1px 5px #000;
+}
+
+.post-home{
+    @apply font-mono text-blue-900
+}
+
+.command-main {
+  @apply flex justify-center items-center h-screen  mx-auto w-full md:w-3/4 overflow-y-auto ;
+}
+
+.command-child{
+    @apply flex flex-col  gap-4 border-2 border-black rounded-lg py-5 bg-blue-300 md:w-2/4 w-11/12 shadow-lg shadow-black/40 overflow-y-auto max-h-[80vh];
+
+}
+
+.search-btn{
+    @apply flex justify-center mx-auto 
+}
+.search-main{
+    @apply flex flex-col items-center  px-4  rounded-lg py-5  md:w-2/4 w-11/12  my-5;
+    @apply transition-transform duration-300 ease-in-out bg-blue-200  ;
+    border: 2px solid rgb(3, 3, 255);
+    box-shadow: 3px 3px 10px rgb(0, 217, 255);
+}
+.btn{
+    @apply  py-3 px-3 md:my-5 bg-blue-600 text-white font-bold text-xl md:text-2xl rounded-2xl w-2/4 hover:bg-white;
+    @apply hover:text-blue-600 hover:border-blue-600;
+    border: 2px solid #fff;
+}
+
+
+.delete-title{
+    @apply text-red-400 text-xl md:text-2xl font-bold font-mono ;
+    text-shadow:1px 1px 5px rgb(255, 109, 109) ;
+}
+
+.delete-child {
+    @apply flex flex-col justify-center items-center gap-4 border-2 border-red-400 rounded-lg py-5  md:w-2/4 w-11/12 ;
+    box-shadow: 2px 2px 10px rgb(255, 109, 109) ;
+    background-color: rgb(231, 221, 221);
+}
+.delete-parent {
+  @apply flex justify-center flex-col items-center border-2 border-gray-400 mx-auto h-screen w-full md:w-3/4 md:fixed md:right-0 ;
+  overflow-y: auto; 
+}
+
+.delete-btn{
+    @apply bg-red-400 py-3 px-5 text-black  border-2 border-black rounded-3xl text-xl md:text-2xl hover:bg-black hover:text-red-400 hover:border-red-400 ;
+}
+.delete-btn:hover:focus{
+    box-shadow: 2px 2px 10px rgb(255, 109, 109) ;
+}
+
+.edit-child {
+    @apply flex flex-col justify-center items-center gap-4 border-2 border-blue-400 rounded-lg py-5  md:w-2/4 w-11/12 ;
+    box-shadow: 2px 2px 10px rgb(109, 220, 251) ;
+    background-color: rgb(231, 221, 221);
+}
+
+.edit-title{
+    @apply text-blue-400 text-xl md:text-2xl font-bold font-mono ;
+    text-shadow:1px 1px 5px rgb(55, 198, 255) ;
+}
+
+.edit-inputs{
+    @apply border-2 border-blue-400 outline-none  rounded-lg pl-2 placeholder-blue-400 text-blue-400  w-full;
+}
+.edit-btn{
+    @apply bg-blue-400 py-2 px-10 text-black  border-2 border-black rounded-3xl text-xl md:text-2xl hover:bg-black hover:text-blue-400 hover:border-blue-400 ;
+    box-shadow:1px 1px 5px rgb(55, 198, 255) ;
+}
+
+.save-btn{
+    @apply bg-pink-400 flex flex-row items-center justify-between border-2 border-blue-900 rounded-xl my-5 font-bold;
+}
+.save-btn:hover:focus{
+    @apply bg-white border-pink-400 text-pink-400;
+    box-shadow: 3px 3px 10px pink;
+}
+.command-main {
+  @apply flex justify-center items-center h-screen  mx-auto w-full md:w-3/4 overflow-y-auto ;
+}
+
+.command-child{
+    @apply flex flex-col  gap-4 border-2 border-black rounded-lg py-5 bg-blue-300 md:w-2/4 w-11/12 shadow-lg shadow-black/40 overflow-y-auto ;
+
+}
+.replies {
+    @apply   w-11/12 mx-auto p-3 rounded-xl text-blue-300 border-2 border-white pb-16 md:pb-3;
+    background-color: rgba(9, 30, 49, 0.618);
+    box-shadow: 3px 3px 10px rgb(231, 229, 226);
+   
+}
+
+
