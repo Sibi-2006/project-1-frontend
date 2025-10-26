@@ -17,7 +17,7 @@ import Search from "./Components/Search.js";
 import DeletePost from "./Components/DeletePost.js";
 import EditPost from "./Components/EditPost.js";
 import SavedPost from "./Components/SavedPost.js";
-
+import About from "./Components/About.js"
 function App() {
   return (
     <div>
@@ -40,6 +40,7 @@ function App() {
             <Route path="/profile/mypost/editpost/:postId" element={<EditPost />} />
             <Route path="/search" element={<Search />} />
             <Route path="/post/save/:id" element={<SavedPost />} />
+            <Route path="/about" element={<About/> } />
           </Routes>
           <MobileNav />
         </BrowserRouter>

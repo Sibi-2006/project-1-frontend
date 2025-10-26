@@ -239,3 +239,16 @@ html {
 }
 
 
+.icon{
+  @apply h-20 md:h-32 md:w-32 w-20 rounded-xl border-2 border-blue-400;
+  box-shadow: 3px 3px 10px #16adff;
+}
+.about-tit{
+  @apply text-xl md:text-2xl text-blue-400 font-bold my-5;
+  text-shadow: 3px 3px 10px #000;
+}
+
+.main{
+  @apply border-2 border-blue-400 p-5 rounded-xl bg-gray-600;
+  box-shadow: 2px 2px 10px rgb(109, 220, 251) ;
+}

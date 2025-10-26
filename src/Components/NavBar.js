@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { get_use_id, clearAuth } from "../Server/storage.js";
+import ICON from "../assets/icon.jpg";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
@@ -27,7 +28,10 @@ export default function NavBar() {
     <>
       {/*  Mobile Header */}
       <div className="md:hidden fixed top-0 left-0 w-full bg-blue-500 text-white flex justify-between items-center p-4 z-50 shadow-md">
-        <h2 className="text-2xl font-bold">SmartScroll</h2>
+        <div className=' flex flex-row justify-center items-center '>
+                  <img className=' h-10 w-10 rounded-full mr-2 border-2 border-blue-950' src={ICON} alt="icon" />
+                  <h2 className="text-2xl font-bold">SmartScroll</h2>
+              </div>
         <button onClick={() => setOpen(!open)} className="focus:outline-none">
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>

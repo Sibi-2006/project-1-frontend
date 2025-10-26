@@ -75,7 +75,7 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+console.log(baseUrl)
   let lastTap = 0;
 
   function handleDoubleTap(post) {

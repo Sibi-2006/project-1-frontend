@@ -67,8 +67,9 @@ export default function Profile() {
             </div>
         </div>
 
-        <div>
-          <p>  <samp className=' text-pink-500 font-bold'>{ user?.bio}</samp> </p>
+        <div className='w-3/4 md:w-5/6 text-center'>
+          <p >  <span className="text-pink-500 font-bold italic tracking-wide">{user?.bio}</span>
+</p>
         </div>
         
         <div className=' flex flex-row gap-5'>
