@@ -217,7 +217,7 @@ html {
 }
 
 .save-btn{
-    @apply bg-pink-400 flex flex-row items-center justify-between border-2 border-blue-900 rounded-xl my-5 font-bold;
+    @apply  flex flex-row items-center justify-between border-2 border-blue-900 rounded-xl my-5 font-bold;
 }
 .save-btn:hover:focus{
     @apply bg-white border-pink-400 text-pink-400;

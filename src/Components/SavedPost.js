@@ -23,7 +23,6 @@ export default function SavedPost() {
         }
         getSavePost();
     },[baseUrl,id]);
-    console.log("save : ",savedPost);
  
   return (
     <div className="flex justify-center flex-col items-center mx-auto w-full md:w-3/4 overflow-y-auto pt-20 pb-24 ">
@@ -52,7 +51,7 @@ export default function SavedPost() {
 
                 <button className="flex items-center gap-2  rounded-xl bg-blue-400 hover:bg-blue-500 transition-colors duration-200 pr-4"  onClick={() => navigate(`/command/${post._id}`)}>
                   <img className="h-10 w-10 rounded-l-xl" src={command} alt="command" />
-                  <span className="font-bold ">{post.reply?.length || 0}</span> -Comment
+                  Read more...
                 </button>
               </div>
             </div>

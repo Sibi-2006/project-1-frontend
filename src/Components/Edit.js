@@ -1,29 +1,29 @@
-import React, { useEffect, useState , useContext  } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { PostContext } from "../Context/PostContext.js"
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { PostContext } from "../Context/PostContext.js";
 
 export default function Edit() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { baseUrl } = useContext(PostContext)
-  
+  const { baseUrl } = useContext(PostContext);
+
   const [user, setUser] = useState({
     userName: "",
     userId: "",
-    bio: ""
+    bio: "",
   });
 
   const [errors, setErrors] = useState({
     userName: { message: "", require: false },
     userId: { message: "", require: false },
-    bio: { message: "", require: false }
+    bio: { message: "", require: false },
   });
 
   const [updateMessage, setUpdateMessage] = useState({
     message: "",
     require: false,
-    isSuccess: false
+    isSuccess: false,
   });
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function Edit() {
       }
     };
     findUser();
-  }, [id,baseUrl]);
+  }, [id, baseUrl]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,6 +52,7 @@ export default function Edit() {
       bio: { message: "", require: false },
     };
 
+    // Empty field checks
     if (!user.userName.trim()) {
       newErrors.userName = { message: "Username is required", require: true };
     }
@@ -62,8 +63,29 @@ export default function Edit() {
       newErrors.bio = { message: "Bio cannot be empty", require: true };
     }
 
+    // Length validations
+    if (user.userName.length > 30) {
+      newErrors.userName = {
+        message: "Username must be less than 30 characters",
+        require: true,
+      };
+    }
+    if (user.userId.length > 20) {
+      newErrors.userId = {
+        message: "User ID must be less than 20 characters",
+        require: true,
+      };
+    }
+    if (user.bio.length > 150) {
+      newErrors.bio = {
+        message: "Bio must be less than 150 characters",
+        require: true,
+      };
+    }
+
     setErrors(newErrors);
 
+    // If any error exists, stop form submit
     if (Object.values(newErrors).some((err) => err.require)) return;
 
     try {
@@ -71,19 +93,18 @@ export default function Edit() {
       setUpdateMessage({
         message: "User updated successfully!",
         require: true,
-        isSuccess: true
+        isSuccess: true,
       });
 
       setTimeout(() => {
         navigate(`/profile/${id}`);
       }, 1500);
-
     } catch (err) {
       console.log(err.message);
       setUpdateMessage({
         message: "Update failed!",
         require: true,
-        isSuccess: false
+        isSuccess: false,
       });
     }
   };
@@ -93,6 +114,7 @@ export default function Edit() {
       <form className="child" onSubmit={handleSubmit}>
         <h2 className="title-form">--- Edit Profile ---</h2>
 
+        {/* User Name */}
         <input
           type="text"
           name="userName"
@@ -105,6 +127,7 @@ export default function Edit() {
           <p className="text-red-400 text-sm">{errors.userName.message}</p>
         )}
 
+        {/* User ID */}
         <input
           type="text"
           name="userId"
@@ -117,6 +140,7 @@ export default function Edit() {
           <p className="text-red-400 text-sm">{errors.userId.message}</p>
         )}
 
+        {/* Bio */}
         <textarea
           name="bio"
           placeholder="Bio"
@@ -128,6 +152,7 @@ export default function Edit() {
           <p className="text-red-400 text-sm">{errors.bio.message}</p>
         )}
 
+        {/* Update message */}
         {updateMessage.require && (
           <p
             className={
@@ -140,7 +165,9 @@ export default function Edit() {
           </p>
         )}
 
-        <button type="submit" className="form-btn">Update</button>
+        <button type="submit" className="form-btn">
+          Update
+        </button>
       </form>
     </div>
   );

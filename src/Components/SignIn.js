@@ -55,6 +55,11 @@ export default function SignIn() {
 
   return (
     <div className="parent">
+      <div className=" my-5">
+       
+        <button className=" bg-blue-100 text-black py-3 px-4 border-2 border-black rounded-s-xl" onClick={()=>navigate('/signup')}>SignUp</button>
+         <button className=" bg-blue-700 text-white py-3 px-4 border-2 border-black rounded-e-xl cursor-not-allowed">signIn</button>
+      </div>
       <form className="child" onSubmit={handleSubmit}>
         <h1 className="title-form">Sign-In</h1>
 

@@ -75,7 +75,7 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-console.log(baseUrl)
+  
   let lastTap = 0;
 
   function handleDoubleTap(post) {
@@ -97,18 +97,22 @@ console.log(baseUrl)
     const userId = post.userId;
     post.likes = Array.isArray(post.likes) ? post.likes : [];
     const isLiked = post.likes.includes(local_id);
-
+    
     try {
       if (isLiked) {
         await axios.patch(
           `${baseUrl}/post/user/unlike/${userId}/${local_id}/${postId}`
         );
+
         post.likes = post.likes.filter((id) => id !== local_id);
+        
       } else {
         await axios.patch(
           `${baseUrl}/post/user/like/${userId}/${local_id}/${postId}`
         );
         post.likes.push(local_id);
+        setLikedPostId(post.postId);
+        setTimeout(() => setLikedPostId(null), 700);
       }
 
       setPosts((prev) =>
@@ -172,7 +176,7 @@ const randomHeart = () => {
             >
               <img className="h-10 w-10 rounded-l-xl" src={command} alt="command" />
               <p className="px-2">
-                <samp className="font-bold">{post.reply.length}</samp> -Command
+                Read more...
               </p>
             </button>
           </div>

@@ -71,9 +71,12 @@ export default function UserProfile() {
           </div>
         </div>
 
-        <p><span className="text-pink-500 font-bold">{user.bio}</span></p>
+         <div className='w-3/4 md:w-5/6 text-center'>
+          <p >  <span className="text-pink-500 font-bold italic tracking-wide">{user?.bio}</span>
+</p>
+        </div>
 
-        <div className="flex flex-row gap-5">
+        <div className="flex flex-col md:flex-row gap-5">
           <button className="profile-btn" onClick={handleFollowToggle}>
             {isFollowing ? "Unfollow ❌" : "Follow 💖"}
           </button>
