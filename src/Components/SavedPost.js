@@ -10,7 +10,23 @@ export default function SavedPost() {
     const { baseUrl } = useContext(PostContext);
     const [ savedPost , setSavedpost ] = useState([]);
     const navigate = useNavigate();
-    
+    const [saved, setSaved] = useState(true);
+    const [user , setUser ] = useState([])
+//local user
+ useEffect(() => {
+    if (!id) return;
+    const fetchLocalUser = async () => {
+      try {
+        const res = await axios.get(`${baseUrl}/post/user/${id}`);
+        setUser(res.data.user);
+        
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchLocalUser();
+  }, [id, baseUrl]);
+
     useEffect(()=>{
         const getSavePost = async ()=>{
             try{
@@ -23,6 +39,32 @@ export default function SavedPost() {
         }
         getSavePost();
     },[baseUrl,id]);
+
+  const handleSave = async (post) => {
+    const postId=post._id;
+    if (!id) {
+      navigate("/signup");
+      return;
+    }
+    if (user.savedPosts?.includes(postId)) {
+          setSaved(true);
+        }
+    
+
+    try {
+      if (!saved) {
+        // save post
+        await axios.post(`${baseUrl}/post/user/${id}/save/${postId}`);
+        setSaved(true);
+      } else {
+        // unsave post
+        await axios.patch(`${baseUrl}/post/user/${id}/unsave/${postId}`);
+        setSaved(false);
+      }
+    } catch (err) {
+      console.log(err.response?.data || err.message);
+    }
+  };
  
   return (
     <div className="flex justify-center flex-col items-center mx-auto w-full md:w-3/4 overflow-y-auto pt-20 pb-24 ">
@@ -43,9 +85,10 @@ export default function SavedPost() {
               <div className="flex flex-row gap-4 mt-4">
                 <button
                   className={`flex items-center gap-2 rounded-xl transition-colors duration-200 pr-4 bg-blue-400 hover:bg-blue-500 text-black `}  
+                  onClick={()=>handleSave(post)}
                 >
                   <img className="h-10 w-10 rounded-l-xl" src={remove} alt="like" />
-                  Remove
+                 {saved ? <span>Remove</span> : <span>Save</span>}
                 </button>
 
 
