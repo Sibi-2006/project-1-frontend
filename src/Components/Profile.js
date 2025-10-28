@@ -55,12 +55,16 @@ export default function Profile() {
         <div>
             <div className=' flex flex-row gap-3 '>
 
-              <div className=' flex flex-col justify-center items-center'>
+              <div className=' flex flex-col justify-center items-center cursor-pointer'
+                onClick={()=>navigate(`/user/${id}/followers`)}
+              >
                 <h4 className=' text-pink-400'>{user?.followers.length}</h4>
                 <h4>followers</h4>
               </div>
 
-              <div className=' flex flex-col justify-center items-center'>
+              <div className=' flex flex-col justify-center items-center cursor-pointer'
+              onClick={()=>navigate(`/user/${id}/following`)}
+              >
                 <h4 className=' text-pink-400'>{user?.following.length}</h4>
                 <h4>following</h4>
               </div>

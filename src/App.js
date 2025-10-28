@@ -18,6 +18,8 @@ import DeletePost from "./Components/DeletePost.js";
 import EditPost from "./Components/EditPost.js";
 import SavedPost from "./Components/SavedPost.js";
 import About from "./Components/About.js"
+import Followers from "./Components/Followers.js";
+import Following from "./Components/Following.js";
 function App() {
   return (
     <div>
@@ -40,6 +42,8 @@ function App() {
             <Route path="/profile/mypost/editpost/:postId" element={<EditPost />} />
             <Route path="/search" element={<Search />} />
             <Route path="/post/save/:id" element={<SavedPost />} />
+            <Route path="/user/:id/followers" element={<Followers />} />
+            <Route path="/user/:id/following" element={ <Following />} />
             <Route path="/about" element={<About/> } />
           </Routes>
           <MobileNav />
