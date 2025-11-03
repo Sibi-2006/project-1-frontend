@@ -183,7 +183,7 @@ const randomHeart = () => {
         </div>
       ))}
 
-      {loading && <p className="text-center my-4">Loading more posts...</p>}
+      {loading && <p className="text-center my-4">⚠️ The app is hosted on Render’s free tier — it may take 10–20 seconds to load initially due to server spin-up time. </p>}
     </div>
   );
 }
